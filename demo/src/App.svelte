@@ -1,41 +1,31 @@
 <script>
-  import Color from "./Color.svelte";
-  let red = 0
-  let green = 30
-  let blue = 0;
+let name = "Jose";
+$: capitalName = name.toUpperCase();
+let age= 10;
+$:dogAge = age * 7;
+let red = 10;
+let green = 0;
+let blue = 0;
+let highGreen = false;
+$: colorValue = color(red,green,blue)
+$: console.log(green)
+function color(red,green,blue){
+  return `rgb(${red},${green},${blue})`
+};
+setTimeout(() => {
+  green += 150
+}, 1500);
 
+$: if(green > 100){
+  highGreen = true;
+}
 </script>
-<div class="row">
-  <div class="col">
-    <h1>Color Picker</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="column">
-    <form>
-      <Color color="Red" bind:colorValue={red}/>
-      <Color color="Green" bind:colorValue={green}/>
-      <Color color="Blue" bind:colorValue={blue}/>
-    </form>
-  </div>
-</div>
-<div class="row">
-  <div class="column">
-    <div id="hex" style="background-color: rgb({red},{green},{blue})"></div>
-  </div>
-</div>
-<div class="row">
-  <div class="column">
-      <h2>RGB({red}, {green}, {blue})</h2>
-  </div>
-</div>
-<style>
-#hex{
-  height: 300px;
-  border: dashed 3px;
-}
-h2{
-  margin-top: 20px;
-  text-align: center;
-}
-</style>
+<h2>{name}</h2>
+<h2>{capitalName}</h2>
+<h2>{age}</h2>
+<h2>dog age: {dogAge}</h2>
+<input type="text" bind:value={name}>
+<input type="number" bind:value={age}>
+
+<h2>color value : {colorValue}</h2>
+<h1>{highGreen? "High": "Low"}</h1>
