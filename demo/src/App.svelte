@@ -1,25 +1,10 @@
 <script>
-
-async function getQuote(){
-  const res = await fetch("https://zenquotes.io/api/random")
-  const [answer] = await res.json();
-  return answer
-}
-
-let promise = getQuote()
-
-function refreshQuote(){
-  promise = getQuote()
-}
+  import {storeOne, storeTwo, storeSumEven} from "./stores/derived.store";
 </script>
 
-{#await promise} 
-<h2>Loading...</h2>
-{:then answer}
-<h2>{answer.q}</h2>
-<h3>Author:{answer.a}</h3>
-{:catch error}
-<h2>error:{error.message}</h2>
-{/await}
+<h2>Sum of store is event: {$storeSumEven}</h2>
 
-<button on:click={refreshQuote} type="button">Refresh</button>
+<h3>Store One {$storeOne}</h3>
+<input type="range" bind:value={$storeOne} min="0" max="10" />
+<h3>Store Two {$storeTwo}</h3>
+<input type="range" bind:value={$storeTwo} min="0" max="10" />
