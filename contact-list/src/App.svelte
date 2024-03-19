@@ -1,4 +1,5 @@
 <script>
+  import contactStore from "./stores/contact.store";
   import Form from "./Form.svelte";
   import List from "./List.svelte";
   
