@@ -1,7 +1,10 @@
 <script>
   import contactStore from "./stores/contact.store";
-  function onEdit(contactId) {
-    contactStore.editContact(contactId)
+   function onEdit(contactId) {
+    contactStore.editContact(contactId);
+  }
+  function onDelete(contactId) {
+    contactStore.delete(contactId);
   }
 </script>
 {#each $contactStore.contacts as contact (contact.id)}
@@ -20,8 +23,8 @@
 </div>
 <div class="row">
   <div class="column">
-    <button on:click={onEdit} class="button">Edit</button>
-    <button class="button"
+    <button on:click={() => onEdit(contact.id)} class="button">Edit</button>
+    <button on:click={() => onDelete(contact.id)} class="button"
       >Delete</button
     >
   </div>

@@ -28,5 +28,11 @@ export default {
         });
         return {contacts: newContacts, editId: undefined}
     })
+ },
+ delete: (contactId) => {
+    store.update(({contacts})=>{
+        const newContacts = contacts.filter((c) => c.id !== contactId)
+        return {contacts: newContacts, editId: undefined}
+    })
  }
 }
